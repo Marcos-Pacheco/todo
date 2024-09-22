@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('status', ['A Fazer', 'Feitas'])->default('A Fazer');
+            $table->enum('status', ['A Fazer', 'Feita'])->default('A Fazer');
             $table->timestamps();
             $table->softDeletes();
         });
