@@ -1,0 +1,56 @@
+services:
+
+  #PHP APP Service
+  lumen:
+    image: marcospacheco/php-8.2
+    build:
+      context: ./
+      dockerfile: ./Dockerfiles/php-8.2/Dockerfile
+    container_name: lumen
+    tty: true
+    environment:
+      SERVICE_NAME: lumen
+      SERVICE_TAGS: dev
+    working_dir: /var/www/lumen
+    volumes:
+      - ./lumen:/var/www/lumen
+    networks:
+      - lumen
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: always
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./lumen:/var/www/lumen
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - lumen
+
+  db_postgres:
+    image: postgres:13.1
+    command: postgres -c DateStyle=DMY
+    container_name: postgres
+    restart: always
+    tty: true
+    working_dir: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      # - ./docker/postgres:/var/lib/postgresql/data # descomente esta linha para salvar os dados do banco entre down e up
+      - ./docker/dumps:/dumps
+    networks:
+      - lumen
+
+#Docker Networks
+networks:
+  lumen:
+    driver: bridge
