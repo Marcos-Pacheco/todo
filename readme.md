@@ -24,13 +24,18 @@ Para executar este projeto localmente, você precisará ter o Docker e o Docker 
 
 ### Passos para Configuração:
 
-1. Execute o arquivo de configuração:
+1. Clone o projeto:
+    ```bash
+    git clone https://github.com/Marcos-Pacheco/todo.git todo
+    ```
+
+2. Execute o arquivo de configuração:
     ```bash
     sudo chmod +x init.sh
     ./init.sh
     ```
 
-2. Acesse a aplicação:
+3. Acesse a aplicação:
 
     ```
     http://localhost:80
