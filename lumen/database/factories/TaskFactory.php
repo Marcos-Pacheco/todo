@@ -14,7 +14,7 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'status' => $this->faker->randomElement(['A Fazer', 'Feitas']),
+            'status' => $this->faker->randomElement(['A Fazer', 'Feita']),
         ];
     }
 }

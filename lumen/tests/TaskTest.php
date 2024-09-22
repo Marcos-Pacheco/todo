@@ -59,7 +59,7 @@ class TaskTest extends TestCase
         $updatedData = [
             'title' => 'Tarefa Atualizada',
             'description' => 'Descrição atualizada',
-            'status' => 'Feitas',
+            'status' => 'Feita',
         ];
 
         $this->put("/tasks/{$task->id}", $updatedData)
