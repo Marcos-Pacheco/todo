@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "d5fc37a4-f647-4494-bd4e-06e732a16d7d",
+		"name": "To-Do List API",
+		"description": "# 📝 API de Lista de Tarefas\n\nEste é um projeto de API de Lista de Tarefas desenvolvido para a posição de Programador(a) Back-end na Unimed Teresina. A API permite criar ✨, listar 📋, atualizar 🔄 e excluir ❌ tarefas, facilitando o gerenciamento de atividades.\n\n## 🔀 Endpoints e Rotas\n\n### 📋 List All\n\n- **Método:** `GET`\n    \n- **Rota:** `/tasks`\n    \n- **Descrição:** Recupera uma lista de todas as tarefas existentes.\n    \n\n### ✨ Create\n\n- **Método:** `POST`\n    \n- **Rota:** `/tasks`\n    \n- **Descrição:** Cria uma nova tarefa com os dados fornecidos.\n    \n\n### 🔍 Show\n\n- **Método:** `GET`\n    \n- **Rota:** `/tasks/{id}`\n    \n- **Descrição:** Recupera os detalhes de uma tarefa específica pelo seu ID.\n    \n\n### 🔄 Update\n\n- **Método:** `PUT`\n    \n- **Rota:** `/tasks/{id}`\n    \n- **Descrição:** Atualiza as informações de uma tarefa existente.\n    \n\n### ❌ Delete\n\n- **Método:** `DELETE`\n    \n- **Rota:** `/tasks/{id}`\n    \n- **Descrição:** Remove uma tarefa do sistema.\n    \n\n## 📦 Dados Necessários\n\nCada tarefa contém os seguintes campos:\n\n- **title**: 🏷️ Título da tarefa.\n    \n- **description**: 📝 Descrição detalhada da tarefa.\n    \n- **status**: 📊 Status atual da tarefa (só aceita: \"A Fazer\" e \"Feita\").\n    \n\n## ⚙️ Variáveis da Coleção\n\nA coleção utiliza as seguintes variáveis para facilitar a configuração e reutilização:\n\n- **base_url**: 🌐 URL base da API.\n    \n- **id**: 🆔 Identificador único da tarefa, usado nas URLs.\n    \n- **title**: 🏷️ Título da tarefa, usado no corpo das requisições.\n    \n- **description**: 📝 Descrição da tarefa.\n    \n- **status**: 📊 Status da tarefa.\n    \n\n## 💡 Sobre o Projeto\n\nEste projeto foi desenvolvido como parte do processo seletivo para a posição de Programador(a) Back-end na **Unimed Teresina**. Ele demonstra a implementação de uma API RESTful seguindo boas práticas de desenvolvimento, incluindo organização de rotas, manipulação de dados e utilização eficiente de variáveis no Postman.\n\n---\n\n**Nota:** ⚠️ Certifique-se de configurar as variáveis da coleção no Postman para que as requisições funcionem corretamente. Isso inclui definir o `base_url` para o endereço onde a API está hospedada e preencher os campos `title`, `description` e `status` conforme necessário.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38513189"
+	},
+	"item": [
+		{
+			"name": "List All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tasks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "{{title}}",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "{{description}}",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{{status}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/tasks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "{{title}}",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "{{description}}",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{{status}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/tasks/{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks",
+						"{{id}}"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tasks/{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks",
+						"{{id}}"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tasks/{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost"
+		},
+		{
+			"key": "title",
+			"value": "Teste Título",
+			"type": "string"
+		},
+		{
+			"key": "description",
+			"value": "Teste Descrição",
+			"type": "string"
+		},
+		{
+			"key": "status",
+			"value": "A Fazer",
+			"type": "string"
+		}
+	]
+}
