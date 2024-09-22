@@ -24,20 +24,13 @@ Para executar este projeto localmente, você precisará ter o Docker e o Docker 
 
 ### Passos para Configuração:
 
-1. Execute o arquivo de configuração específico de OS:
-    Linux:
+1. Execute o arquivo de configuração:
     ```bash
     sudo chmod +x init.sh
     ./init.sh
     ```
-    Windows:
-    ```bash
-    cp 
-    ```    
 
 2. Acesse a aplicação:
-
-    A API estará disponível em:
 
     ```
     http://localhost:80
@@ -50,7 +43,7 @@ Você pode utilizar o Postman ou Insomnia para interagir com a API.
 ### Importando a Collection no Postman:
 
 1. Abra o Postman.
-2. Clique em **Importar** e selecione o arquivo `UnimedTodoList.postman_collection.json` disponível no repositório.
+2. Clique em **Importar** e selecione o arquivo `api-postman-docs.json` disponível na raíz do repositório.
 3. A collection contém todas as rotas da API prontas para uso.
 
 ## 🧪 Testes
@@ -58,7 +51,7 @@ Você pode utilizar o Postman ou Insomnia para interagir com a API.
 Para executar os testes unitários:
 
 ```bash
-docker-compose exec lumen ./vendor/bin/phpunit
+docker compose exec lumen php artisan test
 ```
 
 Os testes cobrem as principais funcionalidades da aplicação, garantindo a qualidade e confiabilidade do sistema.
@@ -69,7 +62,6 @@ Os testes cobrem as principais funcionalidades da aplicação, garantindo a qual
 - **Listar Tarefas**: Visualize todas as tarefas cadastradas.
 - **Atualizar Tarefa**: Edite as informações de uma tarefa existente.
 - **Excluir Tarefa**: Remova tarefas do sistema.
-- **Estados da Tarefa**: Gerencie o status das tarefas entre "A Fazer" e "Feitas".
 
 ## 📁 Rotas da API
 
@@ -92,7 +84,7 @@ Tabela `tasks`:
 - `created_at`
 - `updated_at`
 
-O diagrama completo está disponível no arquivo `der.png` no repositório.
+O diagrama completo está disponível no arquivo `der.png` na raíz repositório.
 
 ## 📫 Contato
 
