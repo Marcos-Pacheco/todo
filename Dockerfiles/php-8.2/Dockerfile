@@ -30,10 +30,10 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # copia os dados do diretorio app para o workdir
-COPY ./app /var/www/app
+COPY ./lumen /var/www/lumen
 
 # copia as permissões atuais dos arquivos
-COPY --chown=www:www ./app /var/www/app
+COPY --chown=www:www ./lumen /var/www/lumen
 
 # muda o usuário atual
 USER www
